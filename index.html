@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Cars | Premium Car Showroom</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #c9a96e;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: #fff;
+            font-weight: 300;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #c9a96e;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #c9a96e;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            color: #c9a96e;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: #ddd;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #c9a96e;
+            color: #0a0a0a;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            background: transparent;
+            border-color: #c9a96e;
+            color: #c9a96e;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #c9a96e;
+            margin: 15px auto 0;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        /* Featured Cars */
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+        }
+
+        .car-card {
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(201,169,110,0.15);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-info h3 {
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .car-info p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #c9a96e;
+            margin-bottom: 15px;
+        }
+
+        .car-btn {
+            background: transparent;
+            border: 1px solid #c9a96e;
+            color: #c9a96e;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .car-btn:hover {
+            background: #c9a96e;
+            color: #0a0a0a;
+        }
+
+        /* Why Choose Us */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+            max-width: 300px;
+            padding: 30px 20px;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #c9a96e;
+        }
+
+        .feature-item h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #aaa;
+            font-weight: 300;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #c9a96e;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card .client {
+            color: #c9a96e;
+            font-weight: 600;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(rgba(10,10,10,0.9), rgba(10,10,10,0.9)),
+                        url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1200&q=80') center/cover;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-banner h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #222;
+        }
+
+        footer p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        footer .social-links {
+            margin-bottom: 15px;
+        }
+
+        footer .social-links a {
+            color: #c9a96e;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: #111;
+                position: absolute;
+                top: 80px;
+                right: 20px;
+                width: 200px;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                gap: 15px;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">Adam <span>Cars</span></div>
+            <nav>
+                <ul id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#inventory">Inventory</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover Excellence at <span>Adam Cars</span></h1>
+            <p>Your Premier Destination for Luxury Vehicles</p>
+            <a href="#inventory" class="btn">View Our Inventory</a>
+        </div>
+    </section>
+
+    <!-- Featured Inventory -->
+    <section id="inventory">
+        <div class="container">
+            <h2 class="section-title">Featured Vehicles</h2>
+            <p class="section-subtitle">Hand-picked luxury cars ready for you</p>
+            <div class="cars-grid">
+                <div class="car-card">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" alt="Car 1">
+                    <div class="car-info">
+                        <h3>Mercedes-AMG GT</h3>
+                        <p>Thrilling performance meets luxury.</p>
+                        <div class="price">$118,000</div>
+                        <a href="#" class="car-btn">View Details</a>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=400&h=300&fit=crop" alt="Car 2">
+                    <div class="car-info">
+                        <h3>BMW M4 Coupe</h3>
+                        <p>Aggressive design, pure driving joy.</p>
+                        <div class="price">$78,500</div>
+                        <a href="#" class="car-btn">View Details</a>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop" alt="Car 3">
+                    <div class="car-info">
+                        <h3>Audi RS7 Sportback</h3>
+                        <p>Power and elegance in one package.</p>
+                        <div class="price">$120,000</div>
+                        <a href="#" class="car-btn">View Details</a>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=400&h=300&fit=crop" alt="Car 4">
+                    <div class="car-info">
+                        <h3>Porsche 911 Carrera</h3>
+                        <p>Iconic silhouette, timeless thrill.</p>
+                        <div class="price">$106,000</div>
+                        <a href="#" class="car-btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Why Adam Cars?</h2>
+            <p class="section-subtitle">We redefine the car buying experience</p>
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Premium Quality</h3>
+                    <p>Every vehicle undergoes a rigorous 150‑point inspection to ensure it meets our exacting standards.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Exceptional Service</h3>
+                    <p>From test drive to after‑sales, our dedicated team provides a seamless, concierge‑level experience.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>Flexible Financing</h3>
+                    <p>Customised loan and lease options to fit your budget, with fast approval and transparent terms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-subtitle">Trusted by car enthusiasts across the city</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>“Adam Cars made buying my dream Mercedes effortless. The team was professional and the car was immaculate.”</p>
+                    <div class="client">— James R.</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>“I never thought financing would be so smooth. They found me a plan that worked perfectly. Highly recommended!”</p>
+                    <div class="client">— Sarah L.</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>“The attention to detail and personal service is unmatched. I won’t buy a car anywhere else.”</p>
+                    <div class="client">— Michael D.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="cta-banner" id="contact">
+        <div class="container">
+            <h2>Ready to Find Your Dream Car?</h2>
+            <p>Call us at <strong>(555) 123‑4567</strong> or visit our showroom today.</p>
+            <a href="#" class="btn">Schedule a Test Drive</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">YT</a>
+            </div>
+            <div class="logo" style="font-size: 20px; margin-bottom: 10px;">Adam <span>Cars</span></div>
+            <p>&copy; 2025 Adam Cars. All rights reserved. | Premium Car Showroom</p>
+        </div>
+    </footer>
+
+    <!-- Mobile menu toggle -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link (smooth scroll friendly)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
